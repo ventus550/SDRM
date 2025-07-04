@@ -167,8 +167,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--runs",
         type=int,
-        default=0,
-        help="Number of statistic gathering runs",
+        default=1,
+        help="Number of statistic gathering runs (specify 1 for datageneration only)",
     )
 
     # Reading args from dictionary not CLI
@@ -212,7 +212,7 @@ if __name__ == "__main__":
     f_sdrm_results = []
     m_sdrm_results = []
     multivae_results = []
-    for run_n in range(0):
+    for run_n in range(args.runs):
         start_time = time.time()
         print(10 * "#", "Starting run", run_n + 1, 10 * "#")
 
