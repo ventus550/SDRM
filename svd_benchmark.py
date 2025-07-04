@@ -5,7 +5,7 @@ from collections import OrderedDict
 import tqdm
 import pickle
 import os
-from scipy.sparse import vstack, csr_matrix
+from scipy.sparse import csr_matrix
 from sklearn.decomposition import NMF
 from sklearn.exceptions import ConvergenceWarning
 import warnings
@@ -29,6 +29,8 @@ def compute_mf_results(training_dataset: csr_matrix, testing_dataset: csr_matrix
     """
     # Splitting the testing data into a subset for testing and validation
     test_data, valid_data = utilities.split_train_test_proportion_from_csr_matrix(testing_dataset, batch_size=1000, random_seed=123)
+
+
     if only_synthetic:
         if not type(synthetic_data) is np.ndarray:
             synthetic_data = np.array(synthetic_data)
@@ -38,7 +40,7 @@ def compute_mf_results(training_dataset: csr_matrix, testing_dataset: csr_matrix
     recall_results = []
     ndcg_results = []
 
-    if not only_synthetic or synthetic_data is None:
+    if not only_synthetic and synthetic_data is not None:
         # If synethetic data is not None, then we are using the synthetic data to augment the training data
         if not type(synthetic_data) is np.ndarray:
             synthetic_data = np.array(synthetic_data)

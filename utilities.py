@@ -238,6 +238,7 @@ def split_train_test_proportion_from_csr_matrix(csr_data, test_prop=0.2, batch_s
 if __name__ == '__main__':
     import pickle
 
-    amazon_data = pickle.load(open('./amazon_music_crs_matrix.pkl', 'rb'))
+    amazon_data = pickle.load(open('./data/ml-100k/ml-100k_full.pkl', 'rb'))
     train_csr_matrix, test_csr_matrix = split_train_test_proportion_from_csr_matrix(amazon_data, batch_size=5)
+    print(train_csr_matrix)
     pass
